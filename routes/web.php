@@ -24,3 +24,4 @@ Route::get('/', function () {
 
 Route::get('/auth', [AuthController::class, 'index']);
 Route::get('/signup', [AuthController::class, 'signup']);
+Route::post('/signup', [AuthController::class, 'storeSignup']);

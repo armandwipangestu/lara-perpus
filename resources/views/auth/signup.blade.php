@@ -32,95 +32,164 @@
                             </svg>
                         </div>
                     </div>
-                    <h1 class="auth-title">Sign Up.</h1>
+                    <h1 class="auth-title">Sign up.</h1>
                     <p class="auth-subtitle mb-5">Input your data to register to our website.</p>
 
-                    <form method="POST">
+                    <form action="/signup" method="POST">
+                        @csrf
 
                         <!-- First Name Field -->
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" id="first_name" name="first_name" value="" class="form-control form-control-xl" placeholder="First Name">
+                            <input type="text" id="first_name" name="first_name" class="form-control form-control-xl @error('first_name')
+                                is-invalid
+                            @enderror" placeholder="First Name" value="{{ old('first_name') }}">
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
+                            @error('first_name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <!-- Last Name Field -->
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" id="last_name" name="last_name" value="" class="form-control form-control-xl" placeholder="Last Name">
+                            <input type="text" id="last_name" name="last_name" class="form-control form-control-xl @error('last_name')
+                                is-invalid
+                            @enderror" placeholder="Last Name" value="{{ old('last_name') }}">
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
+                            @error('first_name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <!-- Username Field -->
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" id="username" name="username" value="" class="form-control form-control-xl" placeholder="Username">
+                            <input type="text" id="username" name="username" class="form-control form-control-xl @error('username')
+                                is-invalid
+                            @enderror" placeholder="Username" value="{{ old('username') }}">
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
-                            <label for="username" class="form-label text-muted mt-2">Only lowercase letters and numbers, no symbols. Example: <strong>foobar</strong></label><br />
+                            <label for="username" class="form-label text-muted mt-2">Minimum 3 character, only lowercase letters and numbers, no symbols. Example: <strong>foobar</strong></label><br />
+                            @error('username')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <!-- Gender Field -->
                         <div class="form-group position-relative has-icon-left mb-4">
                             <fieldset class="form-group">
-                                <select name="gender" id="gender" class="form-select form-control form-control-xl" id="basicSelect">
-                                    <option>Select Gender</option>
+                                <select name="gender" id="gender" class="form-select form-control form-control-xl @error('gender')
+                                    is-invalid
+                                @enderror" id="basicSelect">
+                                    <option value="" selected disabled>Select Gender</option>
+                                    <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
+                                    <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
                                 </select>
                                 <div class="form-control-icon">
                                     <i class="bi bi-gender-ambiguous"></i>
                                 </div>
+                                @error('gender')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </fieldset>
                         </div>
 
                         <!-- Address Field -->
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <textarea id="address" name="address" class="form-control form-control-xl" style="height: 100px !important;" placeholder="Address"></textarea>
+                            <textarea id="address" name="address" class="form-control form-control-xl @error('address')
+                                is-invalid
+                            @enderror" style="height: 100px !important;" placeholder="Address">{{ old('address') }}</textarea>
                             <div class="form-control-icon">
                                 <i class="bi bi-geo-alt"></i>
                             </div>
+                            @error('address')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <!-- Phone Number Field -->
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="number" id="phone_number" name="phone_number" value="" class="form-control form-control-xl" placeholder="Phone Number">
+                            <input type="number" id="phone_number" name="phone_number" class="form-control form-control-xl @error('phone_number')
+                                is-invalid
+                            @enderror" placeholder="Phone Number" value="{{ old('phone_number') }}">
                             <div class="form-control-icon">
                                 <i class="bi bi-telephone"></i>
                             </div>
+                            @error('phone_number')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <!-- Email Field -->
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="email" id="email" name="email" value="" class="form-control form-control-xl" placeholder="Email">
+                            <input type="email" id="email" name="email" class="form-control form-control-xl @error('email')
+                                is-invalid
+                            @enderror" placeholder="Email" value="{{ old('email') }}">
                             <div class="form-control-icon">
                                 <i class="bi bi-envelope"></i>
                             </div>
+                            @error('email')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <!-- Password Field -->
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="password" id="password" name="password" class="form-control form-control-xl" placeholder="Password">
+                            <input type="password" id="password" name="password" class="form-control form-control-xl @error('password')
+                                is-invalid
+                            @enderror" placeholder="Password">
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
                             </div>
                             <label for="password" class="form-label text-muted mt-2">Minimun 8 character</label><br />
+                            @error('password')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <!-- Confirm Password Field -->
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="password" id="confirm_password" name="confirm_password" class="form-control form-control-xl" placeholder="Confirm Password">
+                            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control form-control-xl @error('password')
+                                is-invalid
+                            @enderror" placeholder="Confirm Password">
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
                             </div>
+                            @error('password')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Sign Up</button>
-
+                        <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">
+                            Sign up
+                        </button>
                     </form>
+
                     <div class="text-center mt-5 text-lg fs-4">
-                        <p class='text-gray-600'>Already have an account? <a href="" class="font-bold">Log In.</a></p>
+                        <p class='text-gray-600'>Already have an account? <a href="/auth" class="font-bold">Sign in.</a></p>
                     </div>
+
                     <footer>
                         <div class="footer clearfix text-muted">
                             <div class="text-center">
