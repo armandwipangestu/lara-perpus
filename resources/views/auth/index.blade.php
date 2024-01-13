@@ -37,24 +37,53 @@
                         Sign in with your data that you entered during registration.
                     </p>
 
-                    <form method="POST">
+                    @if(session()->has('success'))
+                        <div class="alert alert-success alert-dismissible fade show ml-4 mr-4" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>                    
+                    @endif
+                    
+                    @if(session()->has('loginError'))
+                        <div class="alert alert-danger alert-dismissible fade show ml-4 mr-4" role="alert">
+                            {{ session('loginError') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>                    
+                    @endif
+
+                    <form action="/signin" method="POST">
+                        @csrf
 
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" id="identity" name="identity" value="" class="form-control form-control-xl" placeholder="Username or Email" />
+                            <input type="text" id="identity" name="identity" value="{{ old('identity') }}" class="form-control form-control-xl @error('identity')
+                                is-invalid
+                            @enderror" placeholder="Username or Email" />
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
+                            @error('identity')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="password" id="password" name="password" class="form-control form-control-xl" placeholder="Password" />
+                            <input type="password" id="password" name="password" class="form-control form-control-xl @error('password')
+                                is-invalid
+                            @enderror" placeholder="Password" />
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
                             </div>
+                            @error('password')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">
-                            Log in
+                            Sign in
                         </button>
 
                     </form>
@@ -64,20 +93,20 @@
                             <a href="/signup" class="font-bold">Sign up.</a>
                         </p>
                     </div>
+                    <footer>
+                        <div class="footer clearfix text-muted">
+                            <div class="text-center">
+                                <p>&copy; Copyright 2024 - {{ date("Y") }} <a href="https://github.com/armandwipangestu/lara-perpus" target="_blank">{{ env("APP_NAME") }}</a>. All rights reserved.</p>
+                            </div>
+                            <div class="text-center">
+                                <p>
+                                    Developed with <span class="text-danger"><i class="bi bi-heart-fill icon-mid"></i></span> By
+                                    <a href="https://github.com/armandwipangestu" target="_blank">Arman</a>
+                                </p>
+                            </div>
+                        </div>
+                    </footer>
                 </div>
-                <footer>
-                    <div class="footer clearfix text-muted">
-                        <div class="text-center">
-                            <p>&copy; Copyright 2024 - {{ date("Y") }} <a href="https://github.com/armandwipangestu/lara-perpus" target="_blank">{{ env("APP_NAME") }}</a>. All rights reserved.</p>
-                        </div>
-                        <div class="text-center">
-                            <p>
-                                Developed with <span class="text-danger"><i class="bi bi-heart-fill icon-mid"></i></span> By
-                                <a href="https://github.com/armandwipangestu" target="_blank">Arman</a>
-                            </p>
-                        </div>
-                    </div>
-                </footer>
             </div>
             <div class="col-lg-7 d-none d-lg-block">
                 <div id="auth-right" class="d-flex align-items-center justify-content-center h-100">

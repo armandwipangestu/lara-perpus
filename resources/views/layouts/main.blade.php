@@ -34,14 +34,20 @@
 </head>
 <body>
 
-    <div id="app">
-        @yield('container')
+    @include('dashboard.layouts.sidebar')
+    @include('dashboard.layouts.topbar')
+
+            @yield('container')
+        </div>
     </div>
 
     {{-- JS --}}
     <script src="assets/template/mazer/dist/assets/static/js/components/dark.js"></script>
     <script src="assets/template/mazer/dist/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/template/mazer/dist/assets/compiled/js/app.js"></script>
+
+    {{-- Notiflix --}}
+    <script src="assets/js/notiflix.js"></script>
 
     {{-- Sweetalert --}}
     <script src="assets/template/mazer/dist/assets/extensions/sweetalert2/sweetalert2.min.js"></script>

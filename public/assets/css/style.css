@@ -13,3 +13,7 @@ input[type="number"] {
 .main-footer {
     padding: 0px 30px 0px 30px;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}
