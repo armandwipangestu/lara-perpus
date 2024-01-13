@@ -43,21 +43,43 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>                    
                     @endif
+                    
+                    @if(session()->has('loginError'))
+                        <div class="alert alert-danger alert-dismissible fade show ml-4 mr-4" role="alert">
+                            {{ session('loginError') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>                    
+                    @endif
 
-                    <form method="POST">
+                    <form action="/signin" method="POST">
+                        @csrf
 
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" id="identity" name="identity" value="" class="form-control form-control-xl" placeholder="Username or Email" />
+                            <input type="text" id="identity" name="identity" value="{{ old('identity') }}" class="form-control form-control-xl @error('identity')
+                                is-invalid
+                            @enderror" placeholder="Username or Email" />
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
+                            @error('identity')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="password" id="password" name="password" class="form-control form-control-xl" placeholder="Password" />
+                            <input type="password" id="password" name="password" class="form-control form-control-xl @error('password')
+                                is-invalid
+                            @enderror" placeholder="Password" />
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
                             </div>
+                            @error('password')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">

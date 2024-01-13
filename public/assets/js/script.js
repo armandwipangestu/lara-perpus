@@ -12,3 +12,21 @@ if (inputNumber) {
         });
     });
 }
+
+const signoutForm = document.querySelectorAll(".signoutForm");
+signoutForm.forEach((sf) => {
+    sf.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        Notiflix.Confirm.show(
+            "Confirmation Signout",
+            "Are you sure?",
+            "Yes",
+            "No",
+            function okCb() {
+                sf.submit();
+            },
+            function cancelCb() {}
+        );
+    });
+});

@@ -24,6 +24,10 @@ class UserFactory extends Factory
     public function definition(): array
     {
         $gender = fake()->randomElement(['Male', 'Female']);
+        $avatar_image = fake()->randomElement([
+            'avatar_image/XcYXE7SOS3aFDTMQnpGoDY9yh6OydhA5CqfLpN0HFN1cu5ZugC.jpg',
+            'avatar_image/Cmh39TDbZbfRnmlYwhEFWiHcdv6MryF69tVjTp5xde2guZJF2E.jpg'
+        ]);
 
         return [
             'first_name' => fake()->name($gender),
@@ -34,7 +38,8 @@ class UserFactory extends Factory
             'phone_number' => fake()->phoneNumber(),
             'email' => fake()->unique()->freeEmail(),
             'password' => static::$password ??= Hash::make('password'),
-            'role_id' => mt_rand(1, 3)
+            'role_id' => mt_rand(1, 3),
+            'avatar_image' => $avatar_image
         ];
     }
 

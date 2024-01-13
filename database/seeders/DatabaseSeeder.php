@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Role::insert([
-            ['role' => 'Administrator'],
-            ['role' => 'Operator'],
-            ['role' => 'Member']
+            ['name' => 'Administrator'],
+            ['name' => 'Operator'],
+            ['name' => 'Member']
         ]);
 
         User::create([
@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '08123456789',
             'email' => 'arman@gmail.com',
             'password' => Hash::make('password'),
-            'role_id' => 1
+            'role_id' => 1,
+            'avatar_image' => 'avatar_image/devnull.png'
         ]);
 
         User::factory(10)->create();

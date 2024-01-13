@@ -187,7 +187,7 @@
                     </form>
 
                     <div class="text-center mt-5 text-lg fs-4">
-                        <p class='text-gray-600'>Already have an account? <a href="/auth" class="font-bold">Sign in.</a></p>
+                        <p class='text-gray-600'>Already have an account? <a href="/signin" class="font-bold">Sign in.</a></p>
                     </div>
 
                     <footer>
