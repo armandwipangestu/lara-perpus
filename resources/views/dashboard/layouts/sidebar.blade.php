@@ -34,12 +34,18 @@
             <div class="sidebar-menu" style="margin-bottom: 50px;">
                 <ul class="menu">
                     <li class="sidebar-title">
-                        Test Menu
+                        User
                     </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fab fa-fw fa-github"></i>
-                            <span>Test Submenu</span>
+                    <li class="sidebar-item {{ Request::is('user') ? 'active' : '' }}">
+                        <a href="/user" class="sidebar-link">
+                            <i class="bi bi-person-vcard"></i>
+                            <span>My Profile</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item {{ Request::is('user/change-password') ? 'active' : '' }}">
+                        <a href="/user/change-password" class="sidebar-link">
+                            <i class="bi bi-key"></i>
+                            <span>Change Password</span>
                         </a>
                     </li>
                     <hr />
